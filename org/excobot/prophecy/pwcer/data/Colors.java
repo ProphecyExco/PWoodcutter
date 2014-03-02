@@ -6,7 +6,7 @@ public class Colors {
 	
 	private static final Color GREEN = new Color(55, 204, 67, 150);
 	
-	public static final Color getSkillColor(int alpha) {
+	public static final Color getSkillColor(final int alpha) {
 		return new Color(GREEN.getRed(), GREEN.getGreen(), GREEN.getBlue(), alpha);
 	}
 

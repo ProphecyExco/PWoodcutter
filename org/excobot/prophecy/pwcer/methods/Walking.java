@@ -5,7 +5,7 @@ import org.excobot.game.api.wrappers.scene.Tile;
 
 public class Walking {
 	
-	public static final Tile getNextTile(Tile[] tiles, boolean reverse) {
+	public static final Tile getNextTile(final Tile[] tiles, final boolean reverse) {
 		if (reverse) {
 			for (int i = tiles.length-1; i >= 0; i--) {
 				if (tiles[i].distance(Players.getLocal()) <= 17)

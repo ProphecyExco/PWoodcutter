@@ -13,7 +13,7 @@ import org.excobot.game.api.wrappers.scene.Tile;
 import org.excobot.prophecy.pwcer.data.Data;
 public class Methods {
 	
-	public static final Tile getNearbyTile(Tile t) {
+	public static final Tile getNearbyTile(final Tile t) {
 		for (int x = -1; x < 2; x++)
 			for (int y = -1; y < 2; y++) {
 				Tile temp = new Tile(t.getX() + x, t.getY() + y, t.getPlane());
@@ -23,7 +23,7 @@ public class Methods {
 		return null;
 	}
 	
-	public static final String runTime(long i) {
+	public static final String runTime(final long i) {
 	    DecimalFormat nf = new DecimalFormat("00");
 	    long millis = System.currentTimeMillis() - i;
 	    long hours = millis / (1000 * 60 * 60);
@@ -34,7 +34,7 @@ public class Methods {
 	    	return nf.format(hours) + ":" + nf.format(minutes) + ":" + nf.format(seconds);
 	}
 	
-	public static final String countDown(long i) {
+	public static final String countDown(final long i) {
 	    DecimalFormat nf = new DecimalFormat("00");
 	    long millis = i;
 	    long hours = millis / (1000 * 60 * 60);
@@ -45,7 +45,7 @@ public class Methods {
 	    	return nf.format(hours) + ":" + nf.format(minutes) + ":" + nf.format(seconds);
 	}
 	
-	public static final String formatNumber(int start) {
+	public static final String formatNumber(final int start) {
         DecimalFormat nf = new DecimalFormat("0.0");
         double i = start;
         if(i >= 1000000) {
@@ -57,7 +57,7 @@ public class Methods {
         return ""+start;
     }
 
-	public static final String perHour(int gained) {
+	public static final String perHour(final int gained) {
 		return formatNumber((int) ((gained) * 3600000D / (System.currentTimeMillis() - Data.runTime)));
 	}
 	
@@ -65,7 +65,7 @@ public class Methods {
 		return (int) (value * 3600000D / (System.currentTimeMillis() - Data.runTime));
 	}
 	
-	public static final long ttl(int gained, Skills skill) {
+	public static final long ttl(final int gained, final Skills skill) {
 		  int currentLevel = skill.getRealLevel();
 		  int currentExp = skill.getExperience(); 
 		  int nextLevelExp = ExpTable.getExpForLevel(currentLevel + 1); 
@@ -73,7 +73,7 @@ public class Methods {
 		return (long) (((double) expToNextLevel * 3600000.0) / (double) getPerHour(gained));
 	}
 	
-	public static final Image getImage(String url) {
+	public static final Image getImage(final String url) {
 		try { return ImageIO.read(new URL(url)); } 
 		catch(IOException e) { return null; }
 	}

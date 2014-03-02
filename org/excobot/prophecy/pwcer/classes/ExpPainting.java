@@ -35,11 +35,11 @@ public class ExpPainting {
 				rectangleMap.put(skill, new Point(8, 342 + rectangleMap.size() * 21));
 	}
 	
-	private final Point getSkillPoint(Skills skill) {
+	private final Point getSkillPoint(final Skills skill) {
 		return rectangleMap.get(skill);
 	}
 	
-	public final int getGained(Skills skill) {
+	public final int getGained(final Skills skill) {
 		return skill.getExperience() - expMap.get(skill);
 	}
 	
@@ -51,24 +51,24 @@ public class ExpPainting {
 		return skillList.toArray(new Skills[skillList.size()]);
 	}
 	
-	private final String getPercentageString(Skills skill) {
+	private final String getPercentageString(final Skills skill) {
 	    DecimalFormat nf = new DecimalFormat("0.0");
 		return nf.format((double)(ExpTable.getExpFromLastLevel(skill)*100)/ExpTable.getExperienceToNextLevel(skill));
 	}
 	
-	public final double getPercentage(Skills skill) {
+	public final double getPercentage(final Skills skill) {
 		return (double)((ExpTable.getExpFromLastLevel(skill)*100)/ExpTable.getExperienceToNextLevel(skill));
 	}
 	
-	private final Rectangle getSkillBar(Skills skill) {
+	private final Rectangle getSkillBar(final Skills skill) {
 		return new Rectangle(getSkillPoint(skill).x + 1, getSkillPoint(skill).y + 5, WIDTH, 19);
 	}
 	
-	private final Rectangle getPercentageBar(Skills skill) {
+	private final Rectangle getPercentageBar(final Skills skill) {
 		return new Rectangle(getSkillPoint(skill).x + 1, getSkillPoint(skill).y + 5, (int) ((WIDTH) * (getPercentage(skill)/100)), 19);
 	}
 	
-	private void drawSkill(Graphics g, Skills skill) {
+	private void drawSkill(final Graphics g, final Skills skill) {
 		Rectangle bg = getSkillBar(skill);
 		Rectangle perc = getPercentageBar(skill);
 		g.setColor(Colors.getSkillColor(80));
@@ -81,7 +81,7 @@ public class ExpPainting {
 		g.drawString((skill.name().charAt(0)+skill.name().substring(1).toLowerCase())+": % to next level ("+(skill.getRealLevel()+1)+"): "+getPercentageString(skill)+"% - Exp (hr): "+Methods.formatNumber(this.getGained(skill))+" ("+Methods.perHour(this.getGained(skill))+") - TTL: "+Methods.countDown(Methods.ttl(getGained(skill), skill)), bg.x + 4, bg.y + 15);
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(final Graphics g) {
 		update();
 		for (Skills skill : getTrainedSkills())
 			drawSkill(g, skill);
